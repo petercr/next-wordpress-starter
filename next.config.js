@@ -1,11 +1,12 @@
 const withPlugins = require('next-compose-plugins');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const indexSearch = require('./plugins/search-index');
 const feed = require('./plugins/feed');
 const sitemap = require('./plugins/sitemap');
 // const socialImages = require('./plugins/socialImages'); TODO: failing to run on Netlify
 
-module.exports = withPlugins([[indexSearch], [feed], [sitemap]], {
+module.exports = withPlugins([[indexSearch], [feed], [sitemap], [new HardSourceWebpackPlugin()]], {
   // By default, Next.js removes the trailing slash. One reason this would be good
   // to include is by default, the `path` property of the router for the homepage
   // is `/` and by using that, would instantly create a redirect
